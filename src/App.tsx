@@ -38,7 +38,7 @@ const App: React.FC = () => {
       longitude: lon,
       body: forecastRes?.data,
     };
-    await axios.post(`http://localhost:3001/location/add`, body);
+    await axios.post(`http://localhost:3001/location/addLocation`, body);
   };
 
   const getCity = async (data: string) => {

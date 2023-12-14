@@ -1,12 +1,7 @@
 import React from "react";
 
 import { Button, AutoComplete } from "antd";
-
-interface MainPageProps {
-  autoCompleteOptions: { value: string; label: any }[];
-  onSelectCity: (value: any) => void;
-  onSearchCity: (value: any) => void;
-}
+import { MainPageProps } from "../interfaces/mainpage.interface";
 
 const MainPage: React.FC<MainPageProps> = ({
   autoCompleteOptions,

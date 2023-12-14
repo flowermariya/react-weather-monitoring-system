@@ -34,15 +34,7 @@ function HistoryPage() {
   }, []);
 
   return (
-    <div
-      style={{
-        backgroundImage:
-          "url('https://img.freepik.com/free-photo/streetlights-cloudy-day_23-2148098648.jpg?w=1060&t=st=1702548430~exp=1702549030~hmac=8916f9f0a36ae429b545e7ce39c888089c45777387b766e06b91cf37aff30682')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        minHeight: "100vh",
-      }}
-    >
+    <div className="homepage">
       <br />
       <List
         itemLayout="vertical"
