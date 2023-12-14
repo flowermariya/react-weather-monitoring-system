@@ -16,6 +16,10 @@ function HistoryPage() {
     }
   };
 
+  useEffect(() => {
+    getLocationHistory();
+  }, []);
+
   const onDelete = async (locationId: string) => {
     console.log("locationId", locationId);
 
@@ -28,10 +32,6 @@ function HistoryPage() {
     );
     getLocationHistory();
   };
-
-  useEffect(() => {
-    getLocationHistory();
-  }, []);
 
   return (
     <div className="homepage">

@@ -3,7 +3,7 @@ import { Row, Card, Col, Button, Modal } from "antd";
 import { kelvinToCelsius } from "../utils/convertToFarenHeat";
 import { ForecastProps } from "../utils/interfaces/forecast.interface";
 import axios from "axios";
-import MinMaxComponent from "./min-max.component";
+import { MinMaxComponent } from "./minmax.component";
 
 const ForecastComponent: React.FC<ForecastProps> = ({
   weatherForecast,
@@ -24,7 +24,7 @@ const ForecastComponent: React.FC<ForecastProps> = ({
       location_id: "",
       location_name: autoCompleteValue,
       lat: latitude,
-      lon: longitude,
+      lng: longitude,
     };
 
     await axios.post(`http://localhost:3001/location/saveMinMaxTemp`, body);

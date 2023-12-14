@@ -9,6 +9,10 @@
     display: flex;
     justify-content: flex-end;
   }
-  
 
-  
+  .map-container {
+    height: 730px;
+    width: 90%;
+    margin: auto;
+    display: flex;
+  }
