@@ -58,9 +58,9 @@ function MapViewComponent() {
         >
           {minMaxValue.map(({ lat, lng, min_temp, max_temp }) => {
             let label = "";
-            if (currentTemp[`${lat}-${lng}`] > parseInt(max_temp)) {
+            if (currentTemp[`${lat}-${lng}`] > max_temp) {
               label = "HOT";
-            } else if (currentTemp[`${lat}-${lng}`] < parseInt(min_temp)) {
+            } else if (currentTemp[`${lat}-${lng}`] < min_temp) {
               label = "COLD";
             }
 

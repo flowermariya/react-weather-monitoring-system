@@ -17,7 +17,7 @@ const ForecastComponent: React.FC<ForecastProps> = ({
     setIsModalOpen(true);
   };
 
-  const handleOk = async (minTemp: any, maxTemp: any) => {
+  const handleOk = async (minTemp: number, maxTemp: number) => {
     const body = {
       min_temp: minTemp,
       max_temp: maxTemp,
