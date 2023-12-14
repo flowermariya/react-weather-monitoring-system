@@ -15,4 +15,6 @@ interface WeatherData {
 export interface ForecastProps {
   weatherForecast: WeatherData[];
   autoCompleteValue: string;
+  latitude: string;
+  longitude: string;
 }

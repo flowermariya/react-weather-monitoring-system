@@ -8,6 +8,8 @@ import MinMaxComponent from "./min-max.component";
 const ForecastComponent: React.FC<ForecastProps> = ({
   weatherForecast,
   autoCompleteValue,
+  latitude,
+  longitude,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -15,22 +17,17 @@ const ForecastComponent: React.FC<ForecastProps> = ({
     setIsModalOpen(true);
   };
 
-  console.log(">>weatherForecast", weatherForecast);
-
   const handleOk = async (minTemp: any, maxTemp: any) => {
     const body = {
       min_temp: minTemp,
       max_temp: maxTemp,
       location_id: "",
       location_name: autoCompleteValue,
-      lat: "",
-      lon: "",
+      lat: latitude,
+      lon: longitude,
     };
 
-    const res = await axios.post(
-      `http://localhost:3001/location/saveMinMaxTemp`,
-      body
-    );
+    await axios.post(`http://localhost:3001/location/saveMinMaxTemp`, body);
 
     setIsModalOpen(false);
   };

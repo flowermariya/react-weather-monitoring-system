@@ -5,6 +5,7 @@ import HistoryPage from "./components/history.component";
 import MainPage from "./components/main.component";
 import ForecastComponent from "./components/forecast.component";
 import "./style.css";
+import MapViewComponent from "./components/mapview.component";
 
 const App: React.FC = () => {
   const [options, setOptions] = useState<{ value: string; label: string }[]>(
@@ -13,6 +14,8 @@ const App: React.FC = () => {
   const [autoCompleteValue, setAutoCompleteValue] = useState<string>("");
   const [weatherForecast, setWeatherForecast] = useState<any[]>([]);
   const [hasSearched, setHasSearched] = useState<boolean>(false);
+  const [latitude, setLatitude] = useState<string>("");
+  const [longitude, setLongitude] = useState<string>("");
 
   const onSelect = async (data: string) => {
     if (!data) {
@@ -22,6 +25,9 @@ const App: React.FC = () => {
     setAutoCompleteValue(city_name);
     const lat = data?.split("-")[3];
     const lon = data?.split("-")[4];
+
+    setLatitude(lat);
+    setLongitude(lon);
 
     if (!lat || !lon) {
       return;
@@ -48,6 +54,9 @@ const App: React.FC = () => {
     const res = await axios.get(
       `http://localhost:3001/location/getCity?search_text=${data}`
     );
+
+    console.log(">>res", res.data);
+
     const autoComplete = res?.data?.map((item: any) => ({
       value: `${item?.name}-${item?.state}-${item?.country}-${item?.lat}-${item?.lon}`,
       label: item?.name,
@@ -55,6 +64,9 @@ const App: React.FC = () => {
 
     setOptions(autoComplete);
   };
+
+  console.log(">>latitude", latitude);
+  console.log("longoti", longitude);
 
   return (
     <Router>
@@ -75,6 +87,8 @@ const App: React.FC = () => {
                     <ForecastComponent
                       weatherForecast={weatherForecast}
                       autoCompleteValue={autoCompleteValue}
+                      latitude={latitude}
+                      longitude={longitude}
                     />
                   )}
                 </div>
@@ -82,6 +96,7 @@ const App: React.FC = () => {
             }
           />
           <Route path="/history" element={<HistoryPage />} />
+          <Route path="/mapView" element={<MapViewComponent />} />
         </Routes>
       </div>
     </Router>
