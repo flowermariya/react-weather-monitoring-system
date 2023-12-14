@@ -9,6 +9,7 @@ interface WeatherData {
   weather: { main: string; description: string }[];
   wind: { speed: number };
   key?: string;
+  data: any;
 }
 
 export interface ForecastProps {

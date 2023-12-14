@@ -1,7 +1,7 @@
 import React from "react";
-
-import { Button, AutoComplete } from "antd";
-import { MainPageProps } from "../interfaces/mainpage.interface";
+import { AutoComplete } from "antd";
+import { MainPageProps } from "../utils/interfaces/mainpage.interface";
+import { Link } from "react-router-dom";
 
 const MainPage: React.FC<MainPageProps> = ({
   autoCompleteOptions,
@@ -17,13 +17,19 @@ const MainPage: React.FC<MainPageProps> = ({
         onSearch={onSearchCity}
         placeholder="Search city"
       />
-
-      <Button href="/history" className="your-custom-class">
-        View Map
-      </Button>
-      <Button href="/history" className="your-custom-class">
-        View History
-      </Button>
+      <Link to="/history">
+        <button
+          type="button"
+          className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 me-2 mb-2"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+            clip-rule="evenodd"
+          />
+          View History
+        </button>
+      </Link>
     </div>
   );
 };

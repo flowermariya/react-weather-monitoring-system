@@ -4,4 +4,11 @@
     background-repeat: no-repeat;
     min-height: 100vh;
   }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+
   

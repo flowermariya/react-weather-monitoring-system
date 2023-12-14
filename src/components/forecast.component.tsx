@@ -1,12 +1,44 @@
-import React from "react";
-import { Row, Card, Col } from "antd";
+import React, { useState } from "react";
+import { Row, Card, Col, Button, Modal } from "antd";
 import { kelvinToCelsius } from "../utils/convertToFarenHeat";
-import { ForecastProps } from "../interfaces/forecast.interface";
+import { ForecastProps } from "../utils/interfaces/forecast.interface";
+import axios from "axios";
+import MinMaxComponent from "./min-max.component";
 
 const ForecastComponent: React.FC<ForecastProps> = ({
   weatherForecast,
   autoCompleteValue,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  console.log(">>weatherForecast", weatherForecast);
+
+  const handleOk = async (minTemp: any, maxTemp: any) => {
+    const body = {
+      min_temp: minTemp,
+      max_temp: maxTemp,
+      location_id: "",
+      location_name: autoCompleteValue,
+      lat: "",
+      lon: "",
+    };
+
+    const res = await axios.post(
+      `http://localhost:3001/location/saveMinMaxTemp`,
+      body
+    );
+
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div className="flex items-center justify-between">
@@ -15,10 +47,17 @@ const ForecastComponent: React.FC<ForecastProps> = ({
           <h1 className="text-6xl font-bold">
             {kelvinToCelsius(weatherForecast[0]?.main?.temp_max)}
           </h1>
-          <p className="text-gray-400">
+          <p className="text-lg"></p>
+          <p className="text-black-400">
             {weatherForecast[0]?.weather?.[0]?.main}
           </p>
-          <div className="text-lg">Today</div>{" "}
+          <div className="">Today</div>{" "}
+          <MinMaxComponent
+            isModalOpen={isModalOpen}
+            handleOk={handleOk}
+            handleCancel={handleCancel}
+            showModal={showModal}
+          />
         </div>
       </div>
       <br />

@@ -64,7 +64,6 @@ const App: React.FC = () => {
             path="/"
             element={
               <div>
-                <br />
                 <div className="container mx-auto p-4">
                   <MainPage
                     autoCompleteOptions={options}
