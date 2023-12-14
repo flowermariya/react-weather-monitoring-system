@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { List, Card, Row, Col, Button } from "antd";
 import { kelvinToCelsius } from "../utils/convertToFarenHeat";
@@ -26,6 +26,7 @@ function HistoryPage() {
     await axios.delete(
       `http://localhost:3001/location/deleteHistory?locationId=${locationId}`
     );
+    getLocationHistory();
   };
 
   useEffect(() => {
