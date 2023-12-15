@@ -22,9 +22,20 @@ export const MinMaxComponent: React.FC<MinMaxComponent> = ({
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <button
+        onClick={showModal}
+        className="p-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        ></svg>
+      </button>
+      {/* <Button type="primary" onClick={showModal}>
         Open Modal
-      </Button>
+      </Button> */}
       <Modal open={isModalOpen} onOk={onOk} onCancel={handleCancel}>
         <form className="max-w-sm mx-auto">
           <div className="flex flex-row justify-between gap-4">

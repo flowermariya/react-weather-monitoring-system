@@ -1,12 +1,14 @@
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
+import { kelvinToCelsius } from "../utils/convertToFarenHeat";
 
 function MapViewComponent() {
   const [minMaxValue, setMinMaxValue] = useState<any[]>([]);
+  const [currentTemperatures, setCurrentTemperatures] = useState({}) as any;
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCmium35X1a16xPWmH2Z1nJ0EQX9sl59fQ",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY as string,
   });
 
   const center = useMemo(() => ({ lat: 10.5256264, lng: 76.2132542 }), []);
@@ -29,7 +31,7 @@ function MapViewComponent() {
   const getMinMaxPoints = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3001/location/getMinMaxTemp`
+        `${process.env.REACT_APP_BACKEND_URL}/getMinMaxTemp`
       );
       setMinMaxValue(res.data);
     } catch (error) {
@@ -38,12 +40,33 @@ function MapViewComponent() {
   };
 
   useEffect(() => {
+    const fetchTemperatures = async () => {
+      const tempData: any = {};
+
+      for (const location of minMaxValue) {
+        try {
+          const res = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/getWeatherForecast?lat=${location.lat}&lon=${location.lng}`
+          );
+          let currentTemp = res?.data?.[0]?.main.temp;
+          currentTemp = kelvinToCelsius(currentTemp);
+          tempData[`${location.lat}-${location.lng}`] = currentTemp;
+        } catch (error) {
+          console.error("Error fetching temperature for location", error);
+        }
+      }
+
+      setCurrentTemperatures(tempData);
+    };
+
+    if (minMaxValue.length > 0) {
+      fetchTemperatures();
+    }
+  }, [minMaxValue]);
+
+  useEffect(() => {
     getMinMaxPoints();
   }, []);
-
-  const currentTemp: any = {
-    "10.5256264-76.2132542": -6,
-  };
 
   return (
     <div className="homepage">
@@ -58,16 +81,15 @@ function MapViewComponent() {
         >
           {minMaxValue.map(({ lat, lng, min_temp, max_temp }) => {
             let label = "";
-            if (currentTemp[`${lat}-${lng}`] > max_temp) {
+            if (currentTemperatures[`${lat}-${lng}`] > max_temp) {
               label = "HOT";
-            } else if (currentTemp[`${lat}-${lng}`] < min_temp) {
+            } else if (currentTemperatures[`${lat}-${lng}`] < min_temp) {
               label = "COLD";
             }
 
             return (
               <Marker
                 position={{ lat, lng }}
-                // icon={"http://maps.google.com/mapfiles/ms/icons/green-dot.png"}
                 icon={customMarker}
                 label={label}
               />

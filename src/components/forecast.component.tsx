@@ -27,7 +27,10 @@ const ForecastComponent: React.FC<ForecastProps> = ({
       lng: longitude,
     };
 
-    await axios.post(`http://localhost:3001/location/saveMinMaxTemp`, body);
+    await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/saveMinMaxTemp`,
+      body
+    );
 
     setIsModalOpen(false);
   };
@@ -38,25 +41,29 @@ const ForecastComponent: React.FC<ForecastProps> = ({
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-lg">{autoCompleteValue}</p>
-          <h1 className="text-6xl font-bold">
+      <div className="flex flex-col items-center justify-center bg-blue-100 border border-blue-300 rounded-xl p-4 max-w-md mx-auto">
+        <div className="text-center mb-2">
+          <p className="text-lg font-semibold text-gray-700">
+            {autoCompleteValue}
+          </p>
+          <h1 className="text-6xl font-bold text-blue-700">
             {kelvinToCelsius(weatherForecast[0]?.main?.temp_max)}
           </h1>
-          <p className="text-lg"></p>
-          <p className="text-black-400">
-            {weatherForecast[0]?.weather?.[0]?.main}
-          </p>
-          <div className="">Today</div>{" "}
-          <MinMaxComponent
-            isModalOpen={isModalOpen}
-            handleOk={handleOk}
-            handleCancel={handleCancel}
-            showModal={showModal}
-          />
         </div>
+        <p className="text-lg font-medium text-gray-600 mb-1">
+          {weatherForecast[0]?.weather?.[0]?.main}
+        </p>
+        <div className="bg-blue-200 text-blue-800 py-1 px-3 rounded-full font-medium mb-2">
+          Today
+        </div>
+        <MinMaxComponent
+          isModalOpen={isModalOpen}
+          handleOk={handleOk}
+          handleCancel={handleCancel}
+          showModal={showModal}
+        />
       </div>
+
       <br />
       <Row gutter={16}>
         <Col className="text-gray-400" span={4}>
@@ -73,7 +80,6 @@ const ForecastComponent: React.FC<ForecastProps> = ({
               />
             </div>
           </Card>
-          <br />
         </Col>
         <Col className="text-gray-400" span={4}>
           <Card bordered={false} style={{ backgroundColor: "#fee2e2" }}>
@@ -151,8 +157,10 @@ const ForecastComponent: React.FC<ForecastProps> = ({
           </Card>
         </Col>
       </Row>
-      <p className="text-gray-400 text-lg">Upcoming Weathers</p>
-      <br />
+      <h2 className="text-lg font-semibold text-white mt-6 mb-4">
+        Upcoming Weathers
+      </h2>
+
       <Row gutter={16}>
         {weatherForecast?.map((item: any) => (
           <Col className="text-gray-400" span={8}>
@@ -161,7 +169,7 @@ const ForecastComponent: React.FC<ForecastProps> = ({
               bordered={false}
               style={{ backgroundColor: "#e7e5e4" }}
             >
-              <p>Temperature: {item?.main?.temp}</p>
+              <p>Temperature: {kelvinToCelsius(item?.main?.temp)}</p>
               <p>Humidity: {item?.main?.humidity}</p>
               <p>Wind Speed: {item?.wind?.speed}</p>
             </Card>

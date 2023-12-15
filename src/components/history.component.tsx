@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { List, Card, Row, Col, Button } from "antd";
 import { kelvinToCelsius } from "../utils/convertToFarenHeat";
 import { DeleteOutlined } from "@ant-design/icons";
+import axios from "axios";
 
 function HistoryPage() {
   const [locationHistory, setLocationHistory] = useState<any[]>([]);
 
   const getLocationHistory = async () => {
     try {
-      const res = await axios.get(`http://localhost:3001/location/getAll`);
+      const res = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/getAll`
+      );
       setLocationHistory(res.data);
     } catch (error) {
       console.error("Error fetching location history:", error);
@@ -28,7 +30,7 @@ function HistoryPage() {
     }
 
     await axios.delete(
-      `http://localhost:3001/location/deleteHistory?locationId=${locationId}`
+      `${process.env.REACT_APP_BACKEND_URL}/deleteHistory?locationId=${locationId}`
     );
     getLocationHistory();
   };
@@ -66,7 +68,8 @@ function HistoryPage() {
                     }
                   >
                     <p>
-                      <strong>Temperature:</strong> {record.main.temp}K
+                      <strong>Temperature:</strong>{" "}
+                      {kelvinToCelsius(record.main.temp)}
                     </p>
                     <p>
                       <strong>Humidity:</strong> {record.main.humidity}%

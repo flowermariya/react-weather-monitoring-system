@@ -33,7 +33,7 @@ const App: React.FC = () => {
       return;
     }
     const forecastRes = await axios.get(
-      `http://localhost:3001/location/getWeatherForecast?lat=${lat}&lon=${lon}`
+      `${process.env.REACT_APP_BACKEND_URL}/getWeatherForecast?lat=${lat}&lon=${lon}`
     );
     setWeatherForecast(forecastRes?.data);
     setHasSearched(true);
@@ -44,7 +44,7 @@ const App: React.FC = () => {
       longitude: lon,
       body: forecastRes?.data,
     };
-    await axios.post(`http://localhost:3001/location/addLocation`, body);
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/addLocation`, body);
   };
 
   const getCity = async (data: string) => {
@@ -52,7 +52,7 @@ const App: React.FC = () => {
       return;
     }
     const res = await axios.get(
-      `http://localhost:3001/location/getCity?search_text=${data}`
+      `${process.env.REACT_APP_BACKEND_URL}/getCity?search_text=${data}`
     );
 
     console.log(">>res", res.data);
@@ -64,9 +64,6 @@ const App: React.FC = () => {
 
     setOptions(autoComplete);
   };
-
-  console.log(">>latitude", latitude);
-  console.log("longoti", longitude);
 
   return (
     <Router>
