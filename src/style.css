@@ -1,0 +1,18 @@
+.homepage {
+    background-image: url('https://img.freepik.com/free-photo/streetlights-cloudy-day_23-2148098648.jpg?w=1060&t=st=1702548430~exp=1702549030~hmac=8916f9f0a36ae429b545e7ce39c888089c45777387b766e06b91cf37aff30682');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .map-container {
+    height: 730px;
+    width: 90%;
+    margin: auto;
+    display: flex;
+  }
