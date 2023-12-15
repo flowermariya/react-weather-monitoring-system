@@ -21,7 +21,6 @@ const ForecastComponent: React.FC<ForecastProps> = ({
     const body = {
       min_temp: minTemp,
       max_temp: maxTemp,
-      location_id: "",
       location_name: autoCompleteValue,
       lat: latitude,
       lng: longitude,

@@ -30,7 +30,7 @@ function HistoryPage() {
     }
 
     await axios.delete(
-      `${process.env.REACT_APP_BACKEND_URL}/deleteHistory?locationId=${locationId}`
+      `${process.env.REACT_APP_BACKEND_URL}/delete?locationId=${locationId}`
     );
     getLocationHistory();
   };
@@ -72,7 +72,6 @@ function HistoryPage() {
                 </button>
               </div>
             </div>
-
             <Row gutter={16}>
               {item.body.map((record: any, idx: any) => (
                 <Col key={idx} span={4}>
