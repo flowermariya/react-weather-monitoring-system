@@ -76,6 +76,8 @@ const App: React.FC = () => {
                 <div className="container mx-auto p-4">
                   <MainPage
                     autoCompleteOptions={options}
+                    autoCompleteValue={autoCompleteValue}
+                    setAutoCompleteValue={setAutoCompleteValue}
                     onSelectCity={onSelect}
                     onSearchCity={getCity}
                   />
