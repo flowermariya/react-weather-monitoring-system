@@ -67,7 +67,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div className="homepage">
+      <div>
         <Routes>
           <Route
             path="/"

@@ -1,11 +1,4 @@
-.homepage {
-    background-image: url('https://img.freepik.com/free-photo/streetlights-cloudy-day_23-2148098648.jpg?w=1060&t=st=1702548430~exp=1702549030~hmac=8916f9f0a36ae429b545e7ce39c888089c45777387b766e06b91cf37aff30682');
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-  }
-
-  .button-container {
+.button-container {
     display: flex;
     justify-content: flex-end;
   }
@@ -16,3 +9,40 @@
     margin: auto;
     display: flex;
   }
+  .weather-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  
+  .history-page-container {
+    /* Styles for the container */
+  }
+  
+  .history-item {
+    background-color: #e7e5e4;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .history-record {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .history-record:hover {
+    background-color: #d0cecd; /* Change hover color here */
+  }
+  
+  

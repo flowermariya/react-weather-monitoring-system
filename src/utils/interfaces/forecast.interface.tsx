@@ -5,8 +5,9 @@ interface WeatherData {
     feels_like: number;
     humidity: number;
     pressure: number;
+    temp: number;
   };
-  weather: { main: string; description: string }[];
+  weather: { main: string; description: string; icon: string }[];
   wind: { speed: number };
   key?: string;
   data: any;

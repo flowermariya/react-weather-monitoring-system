@@ -33,9 +33,6 @@ export const MinMaxComponent: React.FC<MinMaxComponent> = ({
           stroke="currentColor"
         ></svg>
       </button>
-      {/* <Button type="primary" onClick={showModal}>
-        Open Modal
-      </Button> */}
       <Modal open={isModalOpen} onOk={onOk} onCancel={handleCancel}>
         <form className="max-w-sm mx-auto">
           <div className="flex flex-row justify-between gap-4">
