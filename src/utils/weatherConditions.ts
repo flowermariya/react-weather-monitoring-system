@@ -1,0 +1,17 @@
+export const weatherConditions: any = {
+  Thunderstorm: "⛈️",
+  Drizzle: 300,
+  Rain: "🌧️",
+  Snow: "❄️",
+  Clear: "☀️",
+  Clouds: "☁️",
+  Mist: "🌫️",
+  Smoke: "🌫️",
+  Haze: "🌫️",
+  Dust: "🌫️",
+  Fog: "🌫️",
+  Sand: "🌫️",
+  Ash: "🌫️",
+  Squall: "🍂",
+  Tornado: "🌀",
+};

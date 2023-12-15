@@ -83,7 +83,7 @@ function HistoryPage() {
                     <div className="weather-grid-content">
                       <p>
                         <strong>Temperature:</strong>{" "}
-                        {kelvinToCelsius(record.main.temp)}
+                        {kelvinToCelsius(record.main.temp)}°C
                       </p>
                       <p>
                         <strong>Humidity:</strong> {record.main.humidity}%
@@ -99,15 +99,15 @@ function HistoryPage() {
                       </p>
                       <p>
                         <strong> Feels Like:</strong>
-                        {kelvinToCelsius(record?.main?.feels_like)}
+                        {kelvinToCelsius(record?.main?.feels_like)}°C
                       </p>
                       <p>
                         <strong> Max Temperature:</strong>
-                        {kelvinToCelsius(record?.main?.temp_max)}
+                        {kelvinToCelsius(record?.main?.temp_max)}°C
                       </p>
                       <p>
                         <strong> Min Temperature:</strong>
-                        {kelvinToCelsius(record?.main?.temp_min)}
+                        {kelvinToCelsius(record?.main?.temp_min)}°C
                       </p>
                     </div>
                   </div>

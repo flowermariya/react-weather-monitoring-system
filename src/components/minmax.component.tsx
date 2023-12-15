@@ -36,7 +36,14 @@ export const MinMaxComponent: React.FC<MinMaxComponent> = ({
         </svg>
       </button>
 
-      <Modal open={isModalOpen} onOk={onOk} onCancel={handleCancel}>
+      <Modal
+        open={isModalOpen}
+        onOk={onOk}
+        onCancel={handleCancel}
+        okButtonProps={{
+          className: "bg-blue-500 hover:bg-blue-600 text-white",
+        }}
+      >
         <form className="max-w-sm mx-auto">
           <div className="flex flex-row justify-between gap-4">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
