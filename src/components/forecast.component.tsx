@@ -123,7 +123,13 @@ const ForecastComponent: React.FC<ForecastProps> = ({
                   Humidity: {item?.main?.humidity}%
                 </p>
                 <p className="text-gray-700 font-light">
+                  Pressure: {item?.main?.pressure}
+                </p>
+                <p className="text-gray-700 font-light">
                   Wind: {item?.wind?.speed} km/h
+                </p>
+                <p className="text-gray-700 font-light">
+                  Feels Like: {kelvinToCelsius(item?.main?.feels_like)}
                 </p>
               </div>
             </div>
