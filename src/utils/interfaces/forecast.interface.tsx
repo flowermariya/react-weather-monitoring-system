@@ -11,6 +11,7 @@ interface WeatherData {
   wind: { speed: number };
   key?: string;
   data: any;
+  dt: number;
 }
 
 export interface ForecastProps {
@@ -18,4 +19,5 @@ export interface ForecastProps {
   autoCompleteValue: string;
   latitude: string;
   longitude: string;
+  forecastDays: number;
 }
