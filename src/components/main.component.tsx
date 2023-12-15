@@ -11,7 +11,7 @@ const MainPage: React.FC<MainPageProps> = ({
   setAutoCompleteValue,
 }) => {
   return (
-    <div className="header bg-gray-100 p-4 shadow-md">
+    <div className="header bg-gray-100 p-3 shadow-md">
       <div className="flex items-center justify-between">
         <AutoComplete
           options={autoCompleteOptions}

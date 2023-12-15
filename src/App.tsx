@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HistoryPage from "./components/history.component";
@@ -6,6 +6,7 @@ import MainPage from "./components/main.component";
 import ForecastComponent from "./components/forecast.component";
 import "./style.css";
 import MapViewComponent from "./components/mapview.component";
+const debounce = require("lodash.debounce");
 
 const App: React.FC = () => {
   const [options, setOptions] = useState<{ value: string; label: string }[]>(
@@ -65,6 +66,8 @@ const App: React.FC = () => {
     setOptions(autoComplete);
   };
 
+  const debouncedSearch = useCallback(debounce(getCity, 500), []);
+
   return (
     <Router>
       <div>
@@ -79,7 +82,7 @@ const App: React.FC = () => {
                     autoCompleteValue={autoCompleteValue}
                     setAutoCompleteValue={setAutoCompleteValue}
                     onSelectCity={onSelect}
-                    onSearchCity={getCity}
+                    onSearchCity={debouncedSearch}
                   />
                   <br />
                   {hasSearched && (
