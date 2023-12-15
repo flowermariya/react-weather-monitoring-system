@@ -4,4 +4,5 @@ export interface MainPageProps {
   onSearchCity: (value: any) => void;
   setAutoCompleteValue: (value: any) => void;
   autoCompleteValue: string;
+  onClickConfig: (value: any) => void;
 }

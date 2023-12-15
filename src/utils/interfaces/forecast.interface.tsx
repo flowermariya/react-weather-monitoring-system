@@ -19,4 +19,5 @@ export interface ForecastProps {
   autoCompleteValue: string;
   latitude: string;
   longitude: string;
+  forecastDays: number;
 }

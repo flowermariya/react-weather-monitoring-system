@@ -3,15 +3,16 @@ import { kelvinToCelsius } from "../utils/convertToFarenHeat";
 import { ForecastProps } from "../utils/interfaces/forecast.interface";
 import axios from "axios";
 import { MinMaxComponent } from "./minmax.component";
+import { weatherConditions } from "../utils/weatherConditions";
 
 const ForecastComponent: React.FC<ForecastProps> = ({
   weatherForecast,
   autoCompleteValue,
   latitude,
   longitude,
+  forecastDays,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [forecastConfig, setForecastConfig] = useState({ forecastDays: 6 });
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -39,24 +40,6 @@ const ForecastComponent: React.FC<ForecastProps> = ({
   };
 
   console.log(">>weatherForecast", weatherForecast);
-
-  const weatherConditions: any = {
-    Thunderstorm: "⛈️",
-    Drizzle: 300,
-    Rain: "🌧️",
-    Snow: "❄️",
-    Clear: "☀️",
-    Clouds: "☁️",
-    Mist: "🌫️",
-    Smoke: "🌫️",
-    Haze: "🌫️",
-    Dust: "🌫️",
-    Fog: "🌫️",
-    Sand: "🌫️",
-    Ash: "🌫️",
-    Squall: "🍂",
-    Tornado: "🌀",
-  };
 
   return (
     <>
@@ -117,8 +100,9 @@ const ForecastComponent: React.FC<ForecastProps> = ({
         </div>
         <br />
       </div>
+
       <h2 className="text-lg font-semibold text-gray-400 mt-2">
-        10 DAY FORECAST
+        {forecastDays} DAY FORECAST
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6 p-4">
